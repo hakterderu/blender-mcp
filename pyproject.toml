@@ -1,34 +1,73 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
 [project]
 name = "blender-mcp"
-version = "1.5.5"
-description = "Blender integration through the Model Context Protocol"
+version = "0.1.0"
+description = "MCP server that enables AI assistants to control Blender through a socket connection"
 readme = "README.md"
+license = { file = "LICENSE" }
 requires-python = ">=3.10"
+keywords = ["blender", "mcp", "ai", "3d", "modeling", "automation"]
 authors = [
-    {name = "Your Name", email = "your.email@example.com"}
+  { name = "blender-mcp contributors" }
 ]
-license = {text = "MIT"}
 classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Multimedia :: Graphics :: 3D Modeling",
+  "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 dependencies = [
-    "mcp[cli]>=1.3.0",
-    "supabase>=2.0.0",
-    "tomli>=2.0.0",
+  "mcp>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.0",
+  "pytest-asyncio>=0.21",
+  "black>=23.0",
+  "ruff>=0.1.0",
+  "mypy>=1.0",
 ]
 
 [project.scripts]
-blender-mcp = "blender_mcp.server:main"
-
-[build-system]
-requires = ["setuptools>=61.0", "wheel"]
-build-backend = "setuptools.build_meta"
-
-[tool.setuptools]
-package-dir = {"" = "src"}
+blender-mcp = "main:main"
 
 [project.urls]
-"Homepage" = "https://github.com/yourusername/blender-mcp"
-"Bug Tracker" = "https://github.com/yourusername/blender-mcp/issues"
+Homepage = "https://github.com/ahujasid/blender-mcp"
+Repository = "https://github.com/ahujasid/blender-mcp"
+Issues = "https://github.com/ahujasid/blender-mcp/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+include = ["main.py", "addon.py"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311", "py312"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+select = ["E", "F", "W", "I", "N", "UP"]
+ignore = ["E501"]
+
+[tool.ruff.isort]
+known-first-party = ["main", "addon"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

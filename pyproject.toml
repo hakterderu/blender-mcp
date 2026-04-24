@@ -50,11 +50,11 @@ packages = ["."]
 include = ["main.py", "addon.py"]
 
 [tool.black]
-line-length = 100
+line-length = 88
 target-version = ["py310", "py311", "py312"]
 
 [tool.ruff]
-line-length = 100
+line-length = 88
 target-version = "py310"
 select = ["E", "F", "W", "I", "N", "UP"]
 ignore = ["E501"]

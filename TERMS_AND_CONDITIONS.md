@@ -98,12 +98,10 @@ Blender MCP is not intended for users under 16. I do not knowingly collect data 
 
 ## 9. International Users
 
-Your data may be stored and processed in any country. By using Blender MCP, you consent to international data transfers.
+This software is provided for use worldwide. No guarantees are made regarding compliance with data protection laws in any specific jurisdiction (e.g., GDPR, CCPA). Use at your own discretion.
 
 ---
 
-## 10. Intellectual Property
+## 10. Changes to This Policy
 
-### Your Content
-
-You retain 
+I may update this document occasionally. Continued use of Blender MCP after changes constitutes acceptance of the updated terms.

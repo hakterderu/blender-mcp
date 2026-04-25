@@ -13,7 +13,8 @@ logger = logging.getLogger(__name__)
 
 DEFAULT_HOST = "localhost"
 DEFAULT_PORT = 9334
-SOCKET_TIMEOUT = 10.0
+# Increased from 10.0 to give Blender more time on heavy scenes/slow machines
+SOCKET_TIMEOUT = 30.0
 
 
 def _send_command(command: str, params: dict[str, Any] | None = None,
@@ -88,69 +89,4 @@ def create_object(
     """Create a new object in the Blender scene.
 
     Args:
-        object_type: Blender mesh primitive type, e.g. 'CUBE', 'SPHERE', 'PLANE'.
-        name: Optional name for the new object.
-        location: (x, y, z) world-space location.
-        rotation: (rx, ry, rz) Euler rotation in radians.
-        scale: (sx, sy, sz) scale factors.
-    """
-    params: dict[str, Any] = {
-        "type": object_type,
-        "location": list(location),
-        "rotation": list(rotation),
-        "scale": list(scale),
-    }
-    if name:
-        params["name"] = name
-    return _send_command("create_object", params, host=host, port=port)
-
-
-def delete_object(name: str, host: str = DEFAULT_HOST, port: int = DEFAULT_PORT) -> dict:
-    """Delete an object from the Blender scene by name."""
-    return _send_command("delete_object", {"name": name}, host=host, port=port)
-
-
-def transform_object(
-    name: str,
-    location: tuple[float, float, float] | None = None,
-    rotation: tuple[float, float, float] | None = None,
-    scale: tuple[float, float, float] | None = None,
-    host: str = DEFAULT_HOST,
-    port: int = DEFAULT_PORT,
-) -> dict:
-    """Apply a transform to an existing object in the scene."""
-    params: dict[str, Any] = {"name": name}
-    if location is not None:
-        params["location"] = list(location)
-    if rotation is not None:
-        params["rotation"] = list(rotation)
-    if scale is not None:
-        params["scale"] = list(scale)
-    return _send_command("transform_object", params, host=host, port=port)
-
-
-# ---------------------------------------------------------------------------
-# Material tools
-# ---------------------------------------------------------------------------
-
-def set_material(
-    object_name: str,
-    color: tuple[float, float, float, float] = (0.8, 0.8, 0.8, 1.0),
-    material_name: str | None = None,
-    host: str = DEFAULT_HOST,
-    port: int = DEFAULT_PORT,
-) -> dict:
-    """Assign a simple diffuse material to an object.
-
-    Args:
-        object_name: Name of the target object.
-        color: RGBA color values in [0, 1] range.
-        material_name: Optional name for the new material.
-    """
-    params: dict[str, Any] = {
-        "object_name": object_name,
-        "color": list(color),
-    }
-    if material_name:
-        params["material_name"] = material_name
-    return _send_command("set_material", params, host=host, port=port)
+        object_type: Blender mesh primitive type, e.g. '

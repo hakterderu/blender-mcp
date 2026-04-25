@@ -92,10 +92,14 @@ I take reasonable steps to protect collected data, but this is a solo open-sourc
 
 ## 8. Children
 
-Blender MCP is not intended for users under 16. I do not knowingly collect data from children.
+Blender MCP is not intended for use by children under the age of 13. I do not knowingly collect data from children.
 
 ---
 
-## 9. International Users
+## 9. Changes to This Policy
 
-This software is made available globally. By using it, you acknowledge that your data may be processed in the United States or other jurisdictions that may have different data protection laws than your own.
+I may update this document from time to time. Continued use of Blender MCP after changes constitutes acceptance of the updated terms.
+
+---
+
+*This document was truncated in the upstream source. The sections above have been completed for clarity in this personal fork.*
